@@ -1,23 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
+import Otherpage from './Otherpage';
+import Fib from './Fib';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>Fib Calculator</h2>
+      <Fib />
+      <Otherpage />
     </div>
   );
 }
