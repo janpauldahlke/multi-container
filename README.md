@@ -28,5 +28,7 @@
 > consider the following flow for prod:
 ![image](./assets/multi_travis_aws.png)
 
+**pushing tp dockerhub** 
+> !!!!the visibility here sucks, it could take up 2 24 hours to see the images!!!
 
 

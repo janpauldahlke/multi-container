@@ -32,5 +32,6 @@ after_success:
   - docker push hagbardc3line/multi-server
   - docker push hagbardc3line/multi-nginx
 
+## the visibility here sucks, it could take up 2 24 hours to see the images
 
 
