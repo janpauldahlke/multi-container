@@ -32,6 +32,7 @@ class Fib extends Component {
       index: this.state.index,
     });
     this.setState({ index: '' });
+    //refetch on submit lol
     this.fetchValues();
     this.fetchIndexes();
   };
