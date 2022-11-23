@@ -54,23 +54,26 @@ class Fib extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>Enter your index: </label>
-          <input
-            type="text"
-            value={this.state.index}
-            onChange={event => this.setState({ index: event })}></input>
-          <button>Submit</button>
-        </form>
+      <React.Fragment>
+        <h2>Fib Calculator</h2>
+        <div>
+          <form onSubmit={this.handleSubmit}>
+            <label>Enter your index: </label>
+            <input
+              type="text"
+              value={this.state.index}
+              onChange={event => this.setState({ index: event })}></input>
+            <button>Submit</button>
+          </form>
 
-        <h3>Already seen indices:</h3>
-        <ul>{this.renderSeenIndexes()}</ul>
+          <h3>Already seen indices:</h3>
+          <ul>{this.renderSeenIndexes()}</ul>
 
 
-        <h3>Calulated values: </h3>
-        <ul>{ this.renderValues()}</ul>
-      </div>
+          <h3>Calulated values: </h3>
+          <ul>{ this.renderValues()}</ul>
+          </div>
+        </React.Fragment>
     )
   }
 };
