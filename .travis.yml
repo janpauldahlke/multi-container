@@ -25,8 +25,6 @@ after_success:
 
   #login to docker CLI
   #this is how to do it
-  - echo "$DOCKER_ID" 
-  - echo "$DOCKER_PASS" 
   - echo "$DOCKER_PASS" | docker login -u "$DOCKER_ID" --password-stdin
   #push images to docker CLI
   - docker push hagbardc3line/multi-client
