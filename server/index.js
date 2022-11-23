@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 // -- postgres client
 // will store the indicies given from the user input
-const { Pool } = require('pq');
+const { Pool } = require('pg');
 const pgClient = new Pool({
   user: keys.pgUser,
   host: keys.pgHost,
