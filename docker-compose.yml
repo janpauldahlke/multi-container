@@ -1,12 +1,19 @@
 version: '3'
 services:
+  ## remember, this names are also kind of domains, which are reachable with this name
   postgres:
     image: 'postgres:latest'
     environment:
       - POSTGRES_PASSWORD=postgres_password
   worker:
     image: 'redis:latest'
-  server:
+    volumes:
+      - /app/node_modules
+      - ./worker:/app
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+  api:
     build:
       context: ./server
       dockerfile: Dockerfile.dev
@@ -23,4 +30,30 @@ services:
       - PGDATABASE=postgres
       - PGPASSWORD=postgres_password
       - PGPORT=5432
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /home/node/app/node_modules
+      - ./client:/home/node/app
+  # will handle all internal requests and route them to the according container 
+  # client routes will be `/api/values/*`
+  # server routes will be `/values/*`
+  # nginx will chop of the found /api, so our rest is a valdi express route /values
+  # we gonna add a `default.conf`file to follow nginx rules
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    ports: 
+    - "3050:80"
+    
+
+
+      
+
+
+
 
