@@ -1,6 +1,7 @@
 import './App.css';
 import Otherpage from './Otherpage';
 import Fib from './Fib';
+import NotFound from './NotFound';
 import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         
         <div>
           <Routes>
+            <Route path='*' element={<NotFound />} />
             <Route exact path="/" element={<Fib />}></Route>
             <Route path="/otherpage" element={<Otherpage />}></Route>
           </Routes>
