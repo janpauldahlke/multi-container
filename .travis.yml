@@ -16,4 +16,11 @@ before_install:
 script:
   - docker run -e CI=true hagbardc3line/react-test npm run test
   # -- docker run hagbardc3line/other-prject test foo
-deploy: 
+##on test success build all
+after_success: 
+  - docker build -t hagbardc3line/multi-client ./client
+  - docker build -t hagbardc3line/multi-worker ./worker
+  - docker build -t hagbardc3line/multi-server ./server
+  - docker build -t hagbardc3line/nginx ./nginx
+deploy:
+  

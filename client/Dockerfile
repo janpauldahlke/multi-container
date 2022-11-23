@@ -8,7 +8,7 @@ RUN npm run build
 
 #run phase
 FROM nginx
-EXPOSE 80
+EXPOSE 3000
 # client has also an nginx that listens to :3000
 # consider ./nginx/default.conf
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
