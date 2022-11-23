@@ -44,6 +44,9 @@ services:
   # we gonna add a `default.conf`file to follow nginx rules
   nginx:
     restart: always
+    depends_on:
+      - api
+      - client
     build:
       context: ./nginx
       dockerfile: Dockerfile.dev
