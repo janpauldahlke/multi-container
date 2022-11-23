@@ -11,7 +11,7 @@ language: generic
 services: 
   - docker
 before_install:
-  - docker build hagbardc3line/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t hagbardc3line/react-test -f ./client/Dockerfile.dev ./client
   # -- docker build hagbardc3line/other-prject
 script:
   - docker run -e CI=true hagbardc3line/react-test npm run test
