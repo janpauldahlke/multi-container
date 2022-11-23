@@ -5,8 +5,27 @@ services:
     image: 'postgres:latest'
     environment:
       - POSTGRES_PASSWORD=postgres_password
-  worker:
+  redis:
     image: 'redis:latest'
+     # will handle all internal requests and route them to the according container 
+  # client routes will be `/api/values/*`
+  # server routes will be `/values/*`
+  # nginx will chop of the found /api, so our rest is a valdi express route /values
+  # we gonna add a `default.conf`file to follow nginx rules
+  nginx:
+    restart: always
+    depends_on:
+      - api
+      - client
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    ports: 
+    - "3050:80"
+  worker:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./worker
     volumes:
       - /app/node_modules
       - ./worker:/app
@@ -37,21 +56,9 @@ services:
     volumes:
       - /home/node/app/node_modules
       - ./client:/home/node/app
-  # will handle all internal requests and route them to the according container 
-  # client routes will be `/api/values/*`
-  # server routes will be `/values/*`
-  # nginx will chop of the found /api, so our rest is a valdi express route /values
-  # we gonna add a `default.conf`file to follow nginx rules
-  nginx:
-    restart: always
-    depends_on:
-      - api
-      - client
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile.dev
-    ports: 
-    - "3050:80"
+    environment: 
+      - WDS_SOCKET_PORT=0  
+ 
     
 
 

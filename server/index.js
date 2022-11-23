@@ -55,6 +55,7 @@ app.get('/values/all', async (req, res) => {
 app.get('/values/current', async (req, res) => {
   //redis version uncapable of promise so callback
   redisClient.hgetall('values', (err, values) => {
+    if (err) console.log(err);
     res.send(values);
   });
 });
@@ -64,14 +65,14 @@ app.post('/values', async (req, res) => {
   const index = req.body.index;
   if (parseInt(index) > 40) {
     // arbitray max for fib to avoid long computations
-    return res.status(422);
+    return res.status(422).send('index to high');
   }
   //setting index in redis
   redisClient.hset('values', index, 'Nothing yet');
   // wakes up the worker on insert
   redisPublisher.publish('insert', index);
    //setting index in postgres
-  pgClient.query('INSERT INTO values (numbner) VALUES($1)', [index]);
+  pgClient.query('INSERT INTO values(number) VALUES($1)', [index]);
   //se
   res.send({
     working: true,
