@@ -10,6 +10,7 @@
 * we also will create several enviroments like
 * **dev** runs locally
 * **prod** will be deployed to AWS, after certain TRAVIS CI tests succed
+* for dev we also mount VOLUMES into docker container to gain the hot reload from `nodemon`
 
 ##### development
 > consider the following for development:
@@ -23,7 +24,7 @@
   * **nginx**  will redirect client request internally to `/api` or `/`
 * also there is a *nginx* that handles the internal routing for the *client* and *worker* services
 
-#####production
+##### production
 > consider the following flow for prod:
 ![image](./assets/multi_travis_aws.png)
 

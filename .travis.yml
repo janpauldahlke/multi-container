@@ -1,0 +1,19 @@
+#specify docker as dep
+# build test version of react project
+# run tests
+# we are lacking tests for worker and server yet, so we can not run any tests here
+# build prod version of all projects
+# push all to dockerhub
+# tell AWS elastic to update
+
+sudo: required
+language: generic
+services: 
+  - docker
+before_install:
+  - docker build hagbardc3line/react-test -f ./client/Dockerfile.dev ./client
+  # -- docker build hagbardc3line/other-prject
+script:
+  - docker run -e CI=true hagbardc3line/react-test npm run test
+  # -- docker run hagbardc3line/other-prject test foo
+deploy: 
