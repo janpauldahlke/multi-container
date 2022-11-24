@@ -28,7 +28,8 @@
 > consider the following flow for prod:
 ![image](./assets/multi_travis_aws.png)
 
-**pushing tp dockerhub** 
-> !!!!the visibility here sucks, it could take up 2 24 hours to see the images!!!
+* we created our `.travis.yml` file for this
+* then we had serious problem on passing our secrets to the docker login, and it took us a whole lot of time to figure this 
 
-
+* we found a blocker in our outdated tutorial
+> AWS recently deprecated the Amazon Linux and Multicontainer Docker platforms. The Amazon Linux 2 platform dramatically changes how this application will need to be deployed.
